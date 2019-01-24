@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
@@ -19,9 +19,9 @@ export class EmployeeFilterComponent implements OnDestroy {
   }
 
   private controlSub: Subscription;
-  filter = this.fb.control('');
+  filter = new FormControl();
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private router: Router) {
     this.controlSub = this.filter.valueChanges.pipe(
       debounceTime(300),
       distinctUntilChanged()
