@@ -8,8 +8,8 @@ import { TableOptions } from '../employees.service';
   styleUrls: ['./employee-list-header.component.css']
 })
 export class EmployeeListHeaderComponent {
-  @Input() propertyName: string;
-  @Input() display: string;
-  @Input() options: TableOptions;
+  @Input() propertyName = '';
+  @Input() display = '';
+  @Input() options: TableOptions | undefined;
   @Output() clicked = new EventEmitter<string>();
 }

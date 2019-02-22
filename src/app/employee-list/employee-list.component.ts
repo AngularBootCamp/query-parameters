@@ -9,8 +9,8 @@ import { Employee, TableOptions } from '../employees.service';
   styleUrls: ['./employee-list.component.css']
 })
 export class EmployeeListComponent {
-  @Input() employees: Employee[];
-  @Input() options: TableOptions;
+  @Input() employees: Employee[] = [];
+  @Input() options: TableOptions | undefined;
 
   headers = [
     {
@@ -31,7 +31,7 @@ export class EmployeeListComponent {
   constructor(private router: Router) { }
 
   headerClicked(sortBy: string) {
-    if (this.options.sortBy === sortBy) {
+    if (this.options && this.options.sortBy === sortBy) {
       this.changeDirection();
     } else {
       const queryParams = { sortBy, sortDirection: undefined };
@@ -40,8 +40,10 @@ export class EmployeeListComponent {
   }
 
   changeDirection() {
-    const sortDirection = this.options.sortDirection === 'asc' ? 'desc' : 'asc';
-    const queryParams = { sortDirection };
-    void this.router.navigate([], { queryParams, queryParamsHandling: 'merge' });
+    if (this.options) {
+      const sortDirection = this.options.sortDirection === 'asc' ? 'desc' : 'asc';
+      const queryParams = { sortDirection };
+      void this.router.navigate([], { queryParams, queryParamsHandling: 'merge' });
+    }
   }
 }
