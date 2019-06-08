@@ -31,8 +31,6 @@ const routes: Routes = [
     EmployeeListHeaderComponent,
     EmployeeDashboardComponent
   ],
-  bootstrap: [
-    AppComponent
-  ]
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

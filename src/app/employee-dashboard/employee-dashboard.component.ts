@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Employee, EmployeeService, TableOptions } from '../employees.service';
+import {
+  Employee,
+  EmployeeService,
+  TableOptions
+} from '../employees.service';
 
 @Component({
   selector: 'app-employee-dashboard',

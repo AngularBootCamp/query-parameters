@@ -22,18 +22,23 @@ export class EmployeeFilterComponent implements OnDestroy {
   filter = new FormControl();
 
   constructor(private router: Router) {
-    this.controlSub = this.filter.valueChanges.pipe(
-      debounceTime(300),
-      distinctUntilChanged()
-    ).subscribe(firstName => {
-      // If filter is an empty string, replace with undefined
-      // This avoids having an empty key-value pair in the URL
-      const filter = firstName || undefined;
-      const queryParams = { filter };
-      // Navigate returns a promise, best practices dictate that you should always handle them
-      // We are intentionally choosing not to so we are casting it to a void to pass lint
-      void this.router.navigate([], { queryParams, queryParamsHandling: 'merge' });
-    });
+    this.controlSub = this.filter.valueChanges
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged()
+      )
+      .subscribe(firstName => {
+        // If filter is an empty string, replace with undefined
+        // This avoids having an empty key-value pair in the URL
+        const filter = firstName || undefined;
+        const queryParams = { filter };
+        // Navigate returns a promise, best practices dictate that you should always handle them
+        // We are intentionally choosing not to so we are casting it to a void to pass lint
+        void this.router.navigate([], {
+          queryParams,
+          queryParamsHandling: 'merge'
+        });
+      });
   }
 
   ngOnDestroy() {

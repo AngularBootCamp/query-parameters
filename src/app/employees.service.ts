@@ -19,6 +19,11 @@ export interface TableOptions {
   filter: string;
 }
 
+// Convert any possible value to 'desc' or 'asc'
+function convertToAscOrDesc(dir: unknown) {
+  return dir === 'desc' ? 'desc' : 'asc';
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,33 +32,33 @@ export class EmployeeService {
   tableOptions: Observable<TableOptions>;
 
   constructor(route: ActivatedRoute, http: HttpClient) {
-
-    this.tableOptions = route.queryParams.pipe(
+    this.tableOptions = route.queryParamMap.pipe(
       map(params => {
         return {
-          sortBy: params['sortBy'],
-          sortDirection: params['sortDirection'] || 'asc',
-          filter: params['filter']
+          sortBy: params.get('sortBy') || '',
+          sortDirection: convertToAscOrDesc(
+            params.get('sortDirection')
+          ),
+          filter: params.get('filter') || ''
         };
       })
     );
 
-    this.employees = this.tableOptions
-      .pipe(
-        switchMap(options => {
+    this.employees = this.tableOptions.pipe(
+      switchMap(options => {
+        let params = new HttpParams()
+          .set('_sort', options.sortBy)
+          .set('_order', options.sortDirection);
 
-          let params = new HttpParams()
-            .set('_sort', options.sortBy)
-            .set('_order', options.sortDirection);
+        if (options.filter) {
+          params = params.set('q', options.filter);
+        }
 
-          if (options.filter) {
-            params = params.set('q', options.filter);
-          }
-
-          return http
-            .get<Employee[]>(apiUrl + '/employees', { params });
-        }),
-        shareReplay(1)
-      );
+        return http.get<Employee[]>(apiUrl + '/employees', {
+          params
+        });
+      }),
+      shareReplay(1)
+    );
   }
 }
