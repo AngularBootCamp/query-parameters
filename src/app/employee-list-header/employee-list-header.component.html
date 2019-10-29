@@ -1,6 +1,6 @@
 <div class="pointer" (click)="clicked.emit(propertyName)">
   {{ display }}
-  <i
+  <span
     *ngIf="options.sortBy === propertyName"
     class="material-icons orderby"
   >
@@ -9,5 +9,5 @@
         ? 'arrow_drop_down'
         : 'arrow_drop_up'
     }}
-  </i>
+  </span>
 </div>

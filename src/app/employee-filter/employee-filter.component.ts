@@ -27,10 +27,10 @@ export class EmployeeFilterComponent implements OnDestroy {
         debounceTime(300),
         distinctUntilChanged()
       )
-      .subscribe(firstName => {
+      .subscribe(searchTerm => {
         // If filter is an empty string, replace with undefined
         // This avoids having an empty key-value pair in the URL
-        const filter = firstName || undefined;
+        const filter = searchTerm || undefined;
         const queryParams = { filter };
         // Navigate returns a promise, best practices dictate that you should always handle them
         // We are intentionally choosing not to so we are casting it to a void to pass lint
