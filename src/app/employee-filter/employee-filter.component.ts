@@ -23,10 +23,7 @@ export class EmployeeFilterComponent implements OnDestroy {
 
   constructor(private router: Router) {
     this.controlSub = this.filter.valueChanges
-      .pipe(
-        debounceTime(300),
-        distinctUntilChanged()
-      )
+      .pipe(debounceTime(300), distinctUntilChanged())
       .subscribe(searchTerm => {
         // If filter is an empty string, replace with undefined
         // This avoids having an empty key-value pair in the URL
