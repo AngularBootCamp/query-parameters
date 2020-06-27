@@ -16,21 +16,21 @@
       <td>
         <a
           [routerLink]=""
-          [queryParams]="{ filter: employee.first_name }"
+          [queryParams]="{ filter: employee.firstName }"
         >
-          {{ employee.first_name }}
+          {{ employee.firstName }}
         </a>
       </td>
       <td>
         <a
           [routerLink]=""
-          [queryParams]="{ filter: employee.last_name }"
+          [queryParams]="{ filter: employee.lastName }"
         >
-          {{ employee.last_name }}
+          {{ employee.lastName }}
         </a>
       </td>
-      <td>{{ employee.hours_worked }}</td>
-      <td>{{ employee.hourly_wage }}</td>
+      <td>{{ employee.hoursWorked }}</td>
+      <td>{{ employee.hourlyWage }}</td>
     </tr>
   </tbody>
 </table>

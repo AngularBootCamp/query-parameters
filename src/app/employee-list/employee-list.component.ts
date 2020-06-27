@@ -14,19 +14,19 @@ export class EmployeeListComponent {
 
   headers = [
     {
-      propertyName: 'first_name',
+      propertyName: 'firstName',
       display: 'First Name'
     },
     {
-      propertyName: 'last_name',
+      propertyName: 'lastName',
       display: 'Last Name'
     },
     {
-      propertyName: 'hours_worked',
+      propertyName: 'hoursWorked',
       display: 'Hours Worked'
     },
     {
-      propertyName: 'hourly_wage',
+      propertyName: 'hourlyWage',
       display: 'Hourly Wage'
     }
   ];

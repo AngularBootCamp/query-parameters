@@ -7,10 +7,10 @@ import { map, shareReplay, switchMap } from 'rxjs/operators';
 const apiUrl = 'https://api.angularbootcamp.com';
 
 export interface Employee {
-  first_name: string;
-  last_name: string;
-  hours_worked: number;
-  hourly_wage: number;
+  firstName: string;
+  lastName: string;
+  hoursWorked: number;
+  hourlyWage: number;
 }
 
 export interface TableOptions {
