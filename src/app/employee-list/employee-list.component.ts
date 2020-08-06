@@ -34,8 +34,8 @@ export class EmployeeListComponent {
   constructor(private router: Router) {}
 
   headerClicked(sortBy: string) {
-    if (this.options && this.options.sortBy === sortBy) {
-      this.changeDirection();
+    if (this.options?.sortBy === sortBy) {
+      this.changeDirection(this.options);
     } else {
       const queryParams = { sortBy, sortDirection: undefined };
       void this.router.navigate([], {
@@ -45,15 +45,13 @@ export class EmployeeListComponent {
     }
   }
 
-  changeDirection() {
-    if (this.options) {
-      const sortDirection =
-        this.options.sortDirection === 'asc' ? 'desc' : 'asc';
-      const queryParams = { sortDirection };
-      void this.router.navigate([], {
-        queryParams,
-        queryParamsHandling: 'merge'
-      });
-    }
+  private changeDirection(options: TableOptions) {
+    const sortDirection =
+      options.sortDirection === 'asc' ? 'desc' : 'asc';
+    const queryParams = { sortDirection };
+    void this.router.navigate([], {
+      queryParams,
+      queryParamsHandling: 'merge'
+    });
   }
 }
