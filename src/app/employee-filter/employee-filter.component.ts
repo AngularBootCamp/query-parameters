@@ -4,17 +4,21 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
-import { TableOptions } from '../employees.service';
-
 @Component({
   selector: 'app-employee-filter',
   templateUrl: './employee-filter.component.html',
   styleUrls: ['./employee-filter.component.css']
 })
 export class EmployeeFilterComponent implements OnDestroy {
-  @Input() set options(val: TableOptions) {
-    if (val) {
-      this.filter.setValue(val.filter);
+  @Input() set filterTerm(val: string | undefined) {
+    console.log({ val });
+    if (val !== undefined) {
+      this.filter.setValue(val);
+      this.filter.enable();
+    } else {
+      // disabling the control until term arrives
+      // to prevent user input from being thrown away
+      this.filter.disable();
     }
   }
 

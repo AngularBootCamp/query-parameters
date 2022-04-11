@@ -15,7 +15,7 @@
     <tr *ngFor="let employee of employees">
       <td>
         <a
-          [routerLink]=""
+          [routerLink]="[]"
           [queryParams]="{ filter: employee.firstName }"
         >
           {{ employee.firstName }}
@@ -23,7 +23,7 @@
       </td>
       <td>
         <a
-          [routerLink]=""
+          [routerLink]="[]"
           [queryParams]="{ filter: employee.lastName }"
         >
           {{ employee.lastName }}

@@ -33,15 +33,13 @@ export class EmployeeService {
 
   constructor(route: ActivatedRoute, http: HttpClient) {
     this.tableOptions = route.queryParamMap.pipe(
-      map(params => {
-        return {
-          sortBy: params.get('sortBy') || '',
-          sortDirection: convertToAscOrDesc(
-            params.get('sortDirection')
-          ),
-          filter: params.get('filter') || ''
-        };
-      })
+      map(params => ({
+        sortBy: params.get('sortBy') || '',
+        sortDirection: convertToAscOrDesc(
+          params.get('sortDirection')
+        ),
+        filter: params.get('filter') || ''
+      }))
     );
 
     this.employees = this.tableOptions.pipe(

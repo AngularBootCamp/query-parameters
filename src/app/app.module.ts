@@ -17,19 +17,19 @@ const routes: Routes = [
 @NgModule({
   imports: [
     BrowserModule,
-    ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forRoot(routes, {
       useHash: true,
       scrollPositionRestoration: 'enabled'
     }),
-    HttpClientModule
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
+    EmployeeDashboardComponent,
     EmployeeFilterComponent,
     EmployeeListComponent,
-    EmployeeListHeaderComponent,
-    EmployeeDashboardComponent
+    EmployeeListHeaderComponent
   ],
   bootstrap: [AppComponent]
 })
