@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -44,12 +44,13 @@ export class EmployeeService {
 
     this.employees = this.tableOptions.pipe(
       switchMap(options => {
-        let params = new HttpParams()
-          .set('_sort', options.sortBy)
-          .set('_order', options.sortDirection);
+        const params = {
+          _sort: options.sortBy,
+          _order: options.sortDirection
+        };
 
         if (options.filter) {
-          params = params.set('q', options.filter);
+          params['q'] = options.filter;
         }
 
         return http.get<Employee[]>(apiUrl + '/employees', {
