@@ -1,8 +1,11 @@
 import { Component, Input, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import {
+  Subscription,
+  debounceTime,
+  distinctUntilChanged
+} from 'rxjs';
 
 @Component({
   selector: 'app-employee-filter',
