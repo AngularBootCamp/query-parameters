@@ -1,43 +1,36 @@
-import { Component, Input, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   Subscription,
   debounceTime,
-  distinctUntilChanged
+  distinctUntilChanged,
+  startWith
 } from 'rxjs';
 
 @Component({
-  selector: 'app-employee-filter',
-  templateUrl: './employee-filter.component.html',
-  styleUrls: ['./employee-filter.component.css']
+  selector: 'employee-filter',
+  templateUrl: './employee-filter.component.html'
 })
 export class EmployeeFilterComponent implements OnDestroy {
-  @Input() set filterTerm(val: string | undefined) {
-    console.log({ val });
-    if (val !== undefined) {
-      this.filter.setValue(val);
-      this.filter.enable();
-    } else {
-      // disabling the control until term arrives
-      // to prevent user input from being thrown away
-      this.filter.disable();
-    }
-  }
+  employeeFilter: FormControl<string | null>;
+  subscription: Subscription;
 
-  private controlSub: Subscription;
-  filter = new FormControl();
+  constructor(route: ActivatedRoute, private router: Router) {
+    const employeeFilterDefaultValue =
+      route.snapshot.queryParamMap.get('employeeFilter');
+    this.employeeFilter = new FormControl(employeeFilterDefaultValue);
 
-  constructor(private router: Router) {
-    this.controlSub = this.filter.valueChanges
-      .pipe(debounceTime(300), distinctUntilChanged())
-      .subscribe(searchTerm => {
-        // If filter is an empty string, replace with undefined
-        // This avoids having an empty key-value pair in the URL
-        const filter = searchTerm || undefined;
-        const queryParams = { filter };
-        // Navigate returns a promise, best practices dictate that you should always handle them
-        // We are intentionally choosing not to so we are casting it to a void to pass lint
+    this.subscription = this.employeeFilter.valueChanges
+      .pipe(
+        startWith(this.employeeFilter.value),
+        debounceTime(250),
+        distinctUntilChanged()
+      )
+      .subscribe(filterText => {
+        const queryParams = {
+          employeeFilter: filterText || undefined
+        };
         void this.router.navigate([], {
           queryParams,
           queryParamsHandling: 'merge'
@@ -46,6 +39,6 @@ export class EmployeeFilterComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.controlSub.unsubscribe();
+    this.subscription.unsubscribe();
   }
 }
