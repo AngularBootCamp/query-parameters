@@ -9,7 +9,7 @@ import {
 } from 'rxjs';
 
 @Component({
-  selector: 'employee-filter',
+  selector: 'app-employee-filter',
   templateUrl: './employee-filter.component.html'
 })
 export class EmployeeFilterComponent implements OnDestroy {

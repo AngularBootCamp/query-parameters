@@ -5,9 +5,9 @@ import { Employee } from '../employee';
 export const employeeIdQueryParam = 'employeeId';
 
 @Component({
-  selector: 'employee-list',
+  selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
-  styleUrls: ['./employee-list.component.css']
+  styleUrls: ['./employee-list.component.scss']
 })
 export class EmployeeListComponent {
   @Input() list: Employee[] = [];

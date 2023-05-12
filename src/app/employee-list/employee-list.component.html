@@ -1,14 +1,16 @@
-<ul>
+<ul class="collection">
   <li
     *ngFor="let employee of list"
-    [style.background-color]="
-      employee.id === selectedId ? 'yellow' : ''
-    "
+    [class.highlighted]="employee.id === selectedId"
   >
-    <a routerLink [queryParams]="{ employeeId: employee.id }">
+    <a
+      routerLink
+      [queryParams]="{ employeeId: employee.id }"
+      queryParamsHandling="merge"
+    >
       <span>{{ employee.firstName }}</span>
       <span>{{ employee.lastName }}</span>
-      <span class="number-display">{{ employee.hoursWorked }}</span>
+      <span class="hours-worked">{{ employee.hoursWorked }}</span>
     </a>
   </li>
 </ul>

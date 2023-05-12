@@ -1,20 +1,14 @@
-<div class="two-across">
-  <section class="card">
-    <div class="card-content">
-      <div class="card-title">Employees</div>
+<article>
+  <header>Employees</header>
 
-      <div class="two-across">
-        <employee-filter></employee-filter>
-      </div>
+  <app-employee-filter></app-employee-filter>
 
-      <employee-list
-        [list]="(filteredList | async) ?? []"
-        [selectedId]="(selectedEmployee | async)?.id"
-      ></employee-list>
-    </div>
-  </section>
+  <app-employee-list
+    [list]="(filteredList | async) ?? []"
+    [selectedId]="(selectedEmployee | async)?.id"
+  ></app-employee-list>
+</article>
 
-  <employee-detail-view
-    [employee]="(selectedEmployee | async) ?? undefined"
-  ></employee-detail-view>
-</div>
+<app-employee-detail-view
+  [employee]="(selectedEmployee | async) ?? undefined"
+></app-employee-detail-view>

@@ -1,14 +1,13 @@
 a {
   display: grid;
-  padding: 7px;
+  padding: 0.5em;
   grid-template-columns: 2fr 2fr 1fr;
 }
 
 a:hover {
-  padding: 5px;
-  border: 2px solid rgb(36, 183, 199);
+  outline: 2px solid var(--primary);
 }
 
-span.number-display {
+.hours-worked {
   text-align: right;
 }

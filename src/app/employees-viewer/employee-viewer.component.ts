@@ -6,8 +6,9 @@ import { Employee } from '../employee';
 import { EmployeeLoaderService } from '../employee-loader.service';
 
 @Component({
-  selector: 'employee-viewer',
-  templateUrl: './employee-viewer.component.html'
+  selector: 'app-employee-viewer',
+  templateUrl: './employee-viewer.component.html',
+  styleUrls: ['./employee-viewer.component.scss']
 })
 export class EmployeeViewerComponent {
   filteredList: Observable<Employee[]>;
