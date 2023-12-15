@@ -12,7 +12,7 @@ import { EmployeeLoaderService } from '../employee-loader.service';
 @Component({
   selector: 'app-employee-viewer',
   templateUrl: './employee-viewer.component.html',
-  styleUrls: ['./employee-viewer.component.scss'],
+  styleUrl: './employee-viewer.component.scss',
   standalone: true,
   imports: [
     EmployeeFilterComponent,

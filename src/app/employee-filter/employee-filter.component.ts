@@ -18,7 +18,10 @@ export class EmployeeFilterComponent implements OnDestroy {
   employeeFilter: FormControl<string | null>;
   subscription: Subscription;
 
-  constructor(route: ActivatedRoute, private router: Router) {
+  constructor(
+    route: ActivatedRoute,
+    private router: Router
+  ) {
     const employeeFilterDefaultValue =
       route.snapshot.queryParamMap.get('employeeFilter');
     this.employeeFilter = new FormControl(employeeFilterDefaultValue);
