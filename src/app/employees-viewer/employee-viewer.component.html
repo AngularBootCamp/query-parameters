@@ -1,3 +1,5 @@
+@let employee = (selectedEmployee | async) ?? undefined;
+
 <article>
   <header>Employees</header>
 
@@ -5,10 +7,8 @@
 
   <app-employee-list
     [list]="(filteredList | async) ?? []"
-    [selectedId]="(selectedEmployee | async)?.id"
+    [selectedId]="employee?.id"
   />
 </article>
 
-<app-employee-detail-view
-  [employee]="(selectedEmployee | async) ?? undefined"
-/>
+<app-employee-detail-view [employee]="employee" />
